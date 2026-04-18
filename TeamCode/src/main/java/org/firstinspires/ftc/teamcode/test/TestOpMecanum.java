@@ -11,6 +11,8 @@ public class TestOpMecanum extends OpMode {
     private DcMotor backLeftDrive;
     private DcMotor backRightDrive;
 
+    private static final double MAX_POWER = 1.0;
+
     /**
      * User-defined init method
      * <p>
@@ -28,10 +30,7 @@ public class TestOpMecanum extends OpMode {
         backLeftDrive = hardwareMap.get(DcMotor.class, "leftBack");
         backRightDrive = hardwareMap.get(DcMotor.class, "rightBack");
 
-        // We set the left motors in reverse which is needed for drive trains where the left
-        // motors are opposite to the right ones.
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
 
         // Ideally this would run with encoders
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -82,7 +81,10 @@ public class TestOpMecanum extends OpMode {
         telemetry.addData("Drive Mode", "Mecanum");
         telemetry.addData("Runtime", getRuntime());
 
-        drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+        double forward = -gamepad1.left_stick_y;
+        double right = gamepad1.left_stick_x;
+        double rotate = gamepad1.right_stick_x;
+        drive(forward, right, rotate);
 
         telemetry.update();
     }
@@ -109,23 +111,9 @@ public class TestOpMecanum extends OpMode {
         double backRightPower = forward + right - rotate;
         double backLeftPower = forward - right + rotate;
 
-        double maxPower = 1.0;
-        double maxSpeed = 1.0;  // make this slower for outreaches
-
-        // This is needed to make sure we don't pass > 1.0 to any wheel
-        // It allows us to keep all of the motors in proportion to what they should
-        // be and not get clipped
-        maxPower = Math.max(maxPower, Math.abs(frontLeftPower));
-        maxPower = Math.max(maxPower, Math.abs(frontRightPower));
-        maxPower = Math.max(maxPower, Math.abs(backRightPower));
-        maxPower = Math.max(maxPower, Math.abs(backLeftPower));
-
-        // We multiply by maxSpeed so that it can be set lower for outreaches
-        // When a young child is driving the robot, we may not want to allow full
-        // speed.
-        frontLeftDrive.setPower(maxSpeed * (frontLeftPower / maxPower));
-        frontRightDrive.setPower(maxSpeed * (frontRightPower / maxPower));
-        backLeftDrive.setPower(maxSpeed * (backLeftPower / maxPower));
-        backRightDrive.setPower(maxSpeed * (backRightPower / maxPower));
+        frontLeftDrive.setPower(frontLeftPower);
+        frontRightDrive.setPower(frontRightPower);
+        backLeftDrive.setPower(backLeftPower);
+        backRightDrive.setPower(backRightPower);
     }
 }
