@@ -20,7 +20,6 @@ import java.util.List;
 public class TestOpMode extends OpMode {
 
     //Hardware
-
     private Limelight3A limelight;
 
     /**
@@ -40,6 +39,8 @@ public class TestOpMode extends OpMode {
 
     private String lastAction = "<none>";
 
+    private long runtimeCycles = 0;
+
     /**
      * User-defined init method
      * <p>
@@ -52,8 +53,6 @@ public class TestOpMode extends OpMode {
         initGate();
         initLimeLight();
     }
-
-
 
     private void initLimeLight () {
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
@@ -161,9 +160,9 @@ public class TestOpMode extends OpMode {
      */
     @Override
     public void loop() {
-        telemetry.addData("Grove Offseason Testing","Version 1");
+        telemetry.addData("Grove Offseason Testing","Version 1.0.1");
         telemetry.addData("Last Action", lastAction);
-        telemetry.addData("Runtime", getRuntime());
+        telemetry.addData("Runtime", runtimeCycles++);
 
 
         LLResult result = limelight.getLatestResult();
@@ -180,7 +179,6 @@ public class TestOpMode extends OpMode {
         }
 
         manualDrive();
-
 
         telemetry.update();
     }

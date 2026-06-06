@@ -7,7 +7,7 @@ public class Launcher {
 
     private double motorSpeed = 0;
 
-    private double defaultIncrement = 0.01;
+    private double defaultIncrement = 0.001;
 
     public Launcher(DcMotor leftLauncher, DcMotor rightLauncher) {
         this.leftLauncher = leftLauncher;
@@ -33,8 +33,8 @@ public class Launcher {
     public double incrementSpeed()
     {
         motorSpeed += defaultIncrement;
-
-        if (motorSpeed > 1)
+        // Above is the same as motorSpeed = motorSpeed + defaultIncrement;
+         if (motorSpeed > 1)
             motorSpeed = 1;
 
         updateMotorPower();

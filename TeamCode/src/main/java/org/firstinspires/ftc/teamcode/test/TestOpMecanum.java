@@ -168,12 +168,12 @@ public class TestOpMecanum extends OpMode {
         limelightTelemetry();
 
         // The controller's left/right stick returns a value from 0-1
-        double forwardThisCanBeAnything = -gamepad1.left_stick_y;
-        double right = gamepad1.left_stick_x;
-        double rotate = gamepad1.right_stick_x;
+        double leftStickForwardAndBackward = -gamepad1.left_stick_y;
+        double strafe = gamepad1.left_stick_x;
+        double rotation = gamepad1.right_stick_x;
 
         telemetry.addData("Left Stick y axis", gamepad1.left_stick_y);
-        drive(forwardThisCanBeAnything, right, rotate);
+        drive(leftStickForwardAndBackward, strafe, rotation);
 
         // Variable types
         // Double = decimal point number ("double" point precision)
