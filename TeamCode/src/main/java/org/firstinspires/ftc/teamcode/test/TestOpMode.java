@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
-import org.firstinspires.ftc.teamcode.decode.Gate;
-import org.firstinspires.ftc.teamcode.decode.Launcher;
+import org.firstinspires.ftc.teamcode.system.subsystem.Gate;
+import org.firstinspires.ftc.teamcode.system.subsystem.Launcher;
 import org.firstinspires.ftc.teamcode.positioning.Direction;
 
 import java.util.List;
@@ -53,6 +53,8 @@ public class TestOpMode extends OpMode {
         initGate();
         initLimeLight();
     }
+
+
 
     private void initLimeLight () {
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
@@ -316,13 +318,13 @@ public class TestOpMode extends OpMode {
         super.stop();
     }
 
-    private void drive(double forward, double right, double rotate) {
+    private void drive(double forward, double strafe, double rotate) {
         // This calculates the power needed for each wheel based on the amount of forward,
         // strafe right, and rotate
-        double frontLeftPower = forward + right + rotate;
-        double frontRightPower = forward - right - rotate;
-        double backRightPower = forward + right - rotate;
-        double backLeftPower = forward - right + rotate;
+        double frontLeftPower = forward + strafe + rotate;
+        double frontRightPower = forward - strafe - rotate;
+        double backRightPower = forward + strafe - rotate;
+        double backLeftPower = forward - strafe + rotate;
 
         frontLeftDrive.setPower(frontLeftPower);
         frontRightDrive.setPower(frontRightPower);
