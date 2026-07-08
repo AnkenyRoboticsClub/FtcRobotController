@@ -48,8 +48,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  *   - Drive Backward for 1 Second
  *
  *  The code is written in a simple form with no optimizations.
- *  However, there are several ways that this type of sequence could be streamlined,
- *
+ *  However, there are several ways
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
@@ -62,11 +61,12 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
     private DcMotor         leftDrive   = null;
     private DcMotor         rightDrive  = null;
 
-    private ElapsedTime     runtime = new ElapsedTime();
-
 
     static final double     FORWARD_SPEED = 0.6;
     static final double     TURN_SPEED    = 0.5;
+
+    private ElapsedTime     runtime = new ElapsedTime();
+
 
     @Override
     public void runOpMode() {

@@ -5,6 +5,8 @@ import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
 
@@ -18,6 +20,9 @@ public class TestOpMecanumEllie extends OpMode {
     private DcMotor frontRightDrive;
     private DcMotor backLeftDrive;
     private DcMotor backRightDrive;
+
+    private ElapsedTime     runtime = new ElapsedTime();
+
 
     private static final double MAX_POWER = 1.0;
 
@@ -82,9 +87,15 @@ public class TestOpMecanumEllie extends OpMode {
      */
     @Override
     public void start() {
-        super.start();
-        limelight.start();
-        resetRuntime();
+//        super.start();
+//        limelight.start();
+//        resetRuntime();
+//        while (runtime.seconds() < 2.0) {
+//            drive(0.75, 0, 0);
+//        }
+//        drive(0,0,0);
+//
+//        telemetry.addData("Autonomous Mode Runtime", getRuntime());
     }
 
     /**
@@ -109,7 +120,12 @@ public class TestOpMecanumEllie extends OpMode {
         double rotate = gamepad1.right_stick_x;
         drive(forward, right, rotate);
 
+
+
         telemetry.update();
+
+
+
     }
 
     /**
