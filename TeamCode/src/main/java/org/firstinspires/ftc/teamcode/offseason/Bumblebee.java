@@ -15,7 +15,8 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 
-@TeleOp(name="Bumblebee Drive", group="Offseason")
+
+@TeleOp(name="Bumblebee", group="Offseason")
 public class Bumblebee extends OpMode {// Declare OpMode members.static enum DriveMode {
     private static final DriveMode[] DRIVE_MODES = {DRIVE_MODE_A, DRIVE_MODE_B, DRIVE_MODE_C, DRIVE_MODE_D};
     private static final int NUMBER_OF_DRIVE_MODES = DRIVE_MODES.length;
@@ -25,6 +26,9 @@ public class Bumblebee extends OpMode {// Declare OpMode members.static enum Dri
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
     private int driveMode = 0; // Default to index 0
+
+
+    private DcMotor intake = null;
 
     private long nextDriveModeUpdate = Calendar.getInstance().getTimeInMillis();
 
@@ -51,6 +55,9 @@ public class Bumblebee extends OpMode {// Declare OpMode members.static enum Dri
         // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
         rightDrive.setDirection(DcMotor.Direction.FORWARD);
+
+        // Intake
+        intake = hardwareMap.get(DcMotor.class, "intake");
 
         // Tell the driver that initialization is complete.
         telemetry.addData("Status", "Initialized");
@@ -133,6 +140,21 @@ public class Bumblebee extends OpMode {// Declare OpMode members.static enum Dri
                 isTurboEngaged = true;
 
         }
+
+        double intakeIn = (double)gamepad1.right_trigger;
+        double intakeOut = (double)gamepad1.left_trigger;
+
+        double intakePower = 0;
+        if (intakeIn > 0 && intakeOut > 0)
+            intakePower = 0; // Do nothing
+        else if (intakeIn > 0)
+            intakePower = intakeIn;
+        else if (intakeOut > 0)
+            intakePower = intakeOut * -1;
+
+        intake.setPower(intakePower);
+        telemetry.addData("Intake", intakePower);
+
 
         DriveMode controlScheme = DRIVE_MODES[driveMode];
         drive(controlScheme);

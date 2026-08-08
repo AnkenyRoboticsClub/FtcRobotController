@@ -15,7 +15,9 @@ public enum RobotAction {
     SWITCH_CONTROL_SCHEME,
     SPEED_UP,
     SPEED_DOWN,
-    TURBO;
+    TURBO,
+    INTAKE_FORWARD,
+    INTAKE_REVERSE;
 
     public static List<RobotAction> getActions(Gamepad gamepad)
     {

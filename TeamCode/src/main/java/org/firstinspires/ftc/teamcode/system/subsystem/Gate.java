@@ -152,14 +152,6 @@ public class Gate {
         return actionAttempted;
     }
 
-    private double tripleCycle()
-    {
-        cycleGate();
-        cycleGate();
-        cycleGate();
-
-        return true;
-    }
 
     public GatePosition getGatePosition()
     {

@@ -5,10 +5,9 @@ import com.pedropathing.follower.FollowerConstants;
 import com.pedropathing.ftc.FollowerBuilder;
 import com.pedropathing.ftc.drivetrains.MecanumConstants;
 import com.pedropathing.paths.PathConstraints;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.system.drive.MecanumDrive;
+import org.firstinspires.ftc.teamcode.system.subsystem.drive.MecanumDrive;
 
 public class Constants {
     public static FollowerConstants followerConstants = new FollowerConstants();
