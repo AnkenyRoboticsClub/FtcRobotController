@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.system.subsystem.drive.mecanum.MecanumDriv
 import org.firstinspires.ftc.teamcode.system.subsystem.drive.mecanum.MecanumMotorConfig;
 
 
-@TeleOp(name="Monarch-PostSeason", group="PostSeason")
+@TeleOp(name="MecanumTest", group="PostSeason")
 public class Monarch extends OpMode {// Declare OpMode members.static enum DriveMode {
 
     // Constants
@@ -25,10 +25,10 @@ public class Monarch extends OpMode {// Declare OpMode members.static enum Drive
     private void initMecanumDrive()
     {
         // TODO Confirm direction
-        MecanumMotorConfig frontRight = new MecanumMotorConfig("frontRight", IS_FORWARD, WITH_ENCODER);
-        MecanumMotorConfig frontLeft = new MecanumMotorConfig("frontLeft", IS_FORWARD, WITH_ENCODER);
-        MecanumMotorConfig backRight = new MecanumMotorConfig("backRight", IS_FORWARD, WITH_ENCODER);
-        MecanumMotorConfig backLeft = new MecanumMotorConfig("backLeft", IS_FORWARD, WITH_ENCODER);
+        MecanumMotorConfig frontRight = new MecanumMotorConfig("motor1", IS_REVERSE, WITHOUT_ENCODER);
+        MecanumMotorConfig frontLeft = new MecanumMotorConfig("motor0", IS_FORWARD, WITHOUT_ENCODER);
+        MecanumMotorConfig backRight = new MecanumMotorConfig("motor3", IS_REVERSE, WITHOUT_ENCODER);
+        MecanumMotorConfig backLeft = new MecanumMotorConfig("motor2", IS_FORWARD, WITHOUT_ENCODER);
 
         mecanumDrive = new MecanumDrive(hardwareMap, frontRight, frontLeft, backRight, backLeft);
     }

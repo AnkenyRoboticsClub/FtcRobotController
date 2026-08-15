@@ -74,9 +74,9 @@ public class MecanumDrive {
 
         // Mix is -1
         frontLeftPower = frontLeftPower < -1 ? -1 : frontLeftPower;
-        frontRightPower = frontRightPower > -1 ? -1 : frontRightPower;
-        backLeftPower = backLeftPower > -1 ? -1 : backLeftPower;
-        backRightPower = backRightPower > -1 ? -1 : backRightPower;
+        frontRightPower = frontRightPower < -1 ? -1 : frontRightPower;
+        backLeftPower = backLeftPower < -1 ? -1 : backLeftPower;
+        backRightPower = backRightPower < -1 ? -1 : backRightPower;
 
         motorFrontLeft.setPower(frontLeftPower);
         motorFrontRight.setPower(frontRightPower);
