@@ -35,7 +35,9 @@ public class Bumblebee extends OpMode {// Declare OpMode members.static enum Dri
     private double drivePower = 1.0;
     private long nextDrivePowerUpdate = Calendar.getInstance().getTimeInMillis();
 
-    boolean isTurboEngaged = false;
+    private boolean isTurboEngaged = false;
+
+    private boolean disablePlayerOneIntake = false;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -141,8 +143,24 @@ public class Bumblebee extends OpMode {// Declare OpMode members.static enum Dri
 
         }
 
-        double intakeIn = (double)gamepad1.right_trigger;
-        double intakeOut = (double)gamepad1.left_trigger;
+        double playerOneIntakeIn = (double)gamepad1.right_trigger;
+        double playerOneIntakeOut = (double)gamepad1.left_trigger;
+
+        double playerTwoIntakeIn = (double)gamepad2.right_trigger;
+        double playerTwoIntakeOut = (double)gamepad2.left_trigger;
+
+        double intakeIn;
+        if (playerTwoIntakeIn != 0)
+            intakeIn = playerTwoIntakeIn;
+        else
+            intakeIn = playerOneIntakeIn;
+
+        double intakeOut;
+        if (playerTwoIntakeOut != 0)
+            intakeOut = playerTwoIntakeOut;
+        else
+            intakeOut = playerOneIntakeOut;
+
 
         double intakePower = 0;
         if (intakeIn > 0 && intakeOut > 0)
